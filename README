@@ -1,9 +1,15 @@
 Google Closure depswriter in Java. 
 
 To run:
-java -jar depswriter.jar --library=/path/to/closure/goog --source=/path/to/source
+  java -jar depswriter.jar --library=/path/to/closure/goog
+                           --source=/path/to/source
+                           --output=/path/to/deps.js
+
+  Where library: The location where closure api's base.js resides.
+       source: The source directory that you want to calculate dependency script.
+       output: The filename where you want to store the deps file.
 
 To compile, jars it in output folder:
-ant jar
+  ant jar
 
-Eclispe Compatible.
+Eclispe IDE Compatible.
