@@ -102,7 +102,7 @@ public class Switches {
         
         // If user requested help menu. Bring it up.
         if (contains("help")) {
-            Logger.info("Help Menu for Encryption Reverter");
+            Logger.info("Help Menu");
             Logger.info("---------------------------------------------");
             Logger.info(" Required Arguments:");
             for (String[] required_switch : required_switches) {
