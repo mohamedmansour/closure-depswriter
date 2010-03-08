@@ -1,0 +1,50 @@
+<project name="Client" default="jar">
+	<!-- Source file location -->
+	<property name="client.src.location" location="src"/>
+	<!-- Main Class execute -->
+	<property name="client.main" value="com.closure.Main"/>
+	<!-- Compiled soruce location -->
+	<property name="client.bin.location" location="bin"/>
+	<!--Output Location -->
+	<property name="client.output.location" location="output"/>
+	<!-- Compiled Jar Name -->
+	<property name="client.output.jar" location="${client.output.location}/depswriter.jar"/>
+		
+	<!--
+		Cleans client.
+	-->
+	<target name="clean.client" description="Cleans client">
+		<delete file="${client.output.location}" quiet="true"/>
+		<delete file="${client.bin.location}" quiet="true"/>
+	</target>
+	
+	<!--
+		Prepares Output.
+	-->
+	<target name="prepare.output" description="Prepares Output">
+		<mkdir dir="${client.bin.location}"/>
+		<mkdir dir="${client.output.location}"/>
+	</target>
+
+	<!--
+		Compiles source files.
+	-->
+	<target name="compile.client" depends="clean.client, prepare.output" description="Compiles client">
+	    <javac srcdir="${client.src.location}"
+	           destdir="${client.bin.location}"
+	           excludes=".git" />
+	</target>
+
+	<!--
+		To JAR the class files in the bin folder.
+	-->
+	<target name="jar" depends="compile.client">
+		<jar jarfile="${client.output.jar}">
+			<fileset dir="${client.bin.location}" />
+			<manifest>
+				<attribute name="Main-Class" value="${client.main}"/>
+				<attribute name="Class-Path" value="${client.manifest}"/>
+			</manifest>
+		</jar>
+	</target>
+</project>

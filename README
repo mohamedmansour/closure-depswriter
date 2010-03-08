@@ -1,0 +1,4 @@
+Google Closure depswriter in Java
+
+To run:
+java -jar depswriter.jar --library=/path/to/closure/goog --source=/path/to/source
