@@ -1,9 +1,11 @@
 package com.closure.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,14 +50,12 @@ public class IO {
   public static List<String> getFileContents(File path) {
     List<String> builder = new ArrayList<String>();
     try {
-      FileReader fileReader =  new FileReader(path);
-      BufferedReader reader = new BufferedReader(fileReader);
+      BufferedReader reader = new BufferedReader(new FileReader(path));
       String line;
       while ((line = reader.readLine()) != null) {
         builder.add(line);
       }
       reader.close();
-      fileReader.close();
     } catch (FileNotFoundException e) {
       Logger.error("Cannot find file", e);
     } catch (IOException e) {
@@ -63,7 +63,22 @@ public class IO {
     }
     return builder;
   }
-  
+
+  /**
+   * Write file contents to disk
+   * @param output The file to write to.
+   * @param contents The contents to dump.
+   */
+  public static void writeFile(File output, StringBuilder contents) {
+    try {
+      BufferedWriter writer = new BufferedWriter(new FileWriter(output));
+      writer.append(contents);
+      writer.close();
+    } catch (IOException e) {
+      Logger.error("Cannot write deps file.", e);
+    }
+  }
+
   /**
    * Get the relative path based 
    * @param targetFile The directory we need to be relative.

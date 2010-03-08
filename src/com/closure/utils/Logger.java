@@ -22,7 +22,11 @@ public class Logger {
   public static void debug(String log) {
     log(log, Level.DEBUG);
   }
-
+  
+  public static void error(String log) {
+    log(log, Level.ERROR);
+  }
+  
   public static void error(String log, Throwable throwable) {
     log(log, Level.ERROR);
     throwable.printStackTrace();
@@ -31,7 +35,7 @@ public class Logger {
   public static void log(String log, Level level) {
     if (level == Level.INFO) {
       System.out.println(log);
-    } else if (Switches.getInstance().contains("debug")) {
+    } else {
       System.out.println(new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime()) + " - " + level + " - " + log);
     }
   }

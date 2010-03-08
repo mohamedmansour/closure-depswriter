@@ -91,6 +91,9 @@ public class Switches {
     
     /**
      * Process the switches by checking if help is triggered or required switches is set.
+     * 
+     * @todo change the double array to a list of objects instead, so we can handle non
+     *       required switches as well.
      * @param arguments a list of args for the system.
      * @param required_switches A list of required switches [Switch][Description]
      */
@@ -113,10 +116,9 @@ public class Switches {
         
         // Validate required switches.
         if (!validate(required_switches)) {
-            Logger.log("Missing switches, cannot continue! Exiting ...", Level.ERROR);
+            Logger.error("Missing switches, cannot continue! Exiting ...");
             System.exit(1);
         }
-        Logger.debug("Command line arguments validated!");
     }
 
     /**
